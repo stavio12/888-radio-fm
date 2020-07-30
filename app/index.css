@@ -1,0 +1,41 @@
+body {
+  background: rgb(26, 26, 26);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 1) 100%);
+}
+
+#chart {
+  background: url(https://bestgamingthings.com/wp-content/uploads/2019/04/mic-main-logo-bgs.jpg);
+  height: 50vh;
+}
+
+.w3-section {
+  max-width: 500px;
+}
+
+#ourdj {
+  width: 20em;
+}
+
+.fa-google {
+  color: #4885ed;
+  font-size: larger;
+}
+
+#interview {
+  background: url(https://colorlib.com/preview/theme/eighty8/img/bg.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 60vh;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+
+.userPic{
+  width: 40px;
+}
