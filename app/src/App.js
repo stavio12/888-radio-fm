@@ -9,24 +9,24 @@ import About from "./components/About";
 import Booking from "./components/Booking";
 import ProductionPage from "./components/production/ProductionPage";
 
-
 //Using reducer to store up user UID after they login
-function reducer(state, action) {
+function reducer(state="", action) {
   switch (action.type) {
     case "Uid":
-      state.Uid = action.payload;
+      return action.payload
+
       break;
   }
+
   return state;
 }
 
 function App() {
-  const initialState = {
-    Uid: "",
-  };
+  
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer);
 
+ 
   return (
     <>
       <Router>
@@ -35,7 +35,7 @@ function App() {
         <Route path="/about" component={About} />
         <Route path="/booking" component={Booking} />
         <Route path="/production" exact>
-          <ProductionPage user={state.uid} />
+          <ProductionPage user={state} />
         </Route>
         <Footer />
       </Router>

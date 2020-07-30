@@ -12,6 +12,10 @@ function ProductionPage({ user }) {
   const [price, setPrice] = useState("");
   const [uploading, setUploading] = useState(false);
 
+
+
+
+
   function book(e) {
     e.preventDefault();
     //Uploading file into firebase cloud storage

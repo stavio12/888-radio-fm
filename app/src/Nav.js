@@ -123,9 +123,9 @@ function Nav({ dispatch }) {
     <div>
       {dispatch({ type: "Uid", payload: user.uid })}
       <NavUser user={user} />
-      <Router>
+      {/* <Router>
         <Redirect from="/" to="/production" />
-      </Router>
+      </Router> */}
     </div>
   ) : (
     <Login />
