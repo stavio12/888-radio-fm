@@ -7,7 +7,7 @@ function NavUser({ user }) {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
         <Link to="/" className="navbar-brand">
-          Navbar
+          <img src="https://colorlib.com/preview/theme/eighty8/img/logo-big.png" className="brand" />{" "}
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
