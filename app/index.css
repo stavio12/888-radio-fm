@@ -11,9 +11,11 @@ body {
 .w3-section {
   max-width: 500px;
 }
-
-#ourdj {
-  width: 20em;
+#ourdj{
+  width:5em;
+}
+.brand{
+  width: 60px;
 }
 
 .fa-google {
@@ -35,7 +37,46 @@ body {
   margin: auto;
 }
 
-
-.userPic{
+.userPic {
   width: 40px;
+}
+
+.blur {
+  width: 20em;
+  height: 21em;
+  background: rgba(26, 26, 26, 0.548);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0.856) 100%, rgba(26, 26, 26, 0.541) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/3.jpg") no-repeat;
+}
+
+.blur:hover {
+  width: 20em;
+  height: 21em;
+  background: rgba(26, 26, 26, 0.548);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0) 100%, rgba(26, 26, 26, 0) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/3.jpg") no-repeat;
+}
+
+.live {
+  width: 20em;
+  height: 21em;
+  background: rgba(26, 26, 26, 0.548);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0.856) 100%, rgba(26, 26, 26, 0.541) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/2.jpg") no-repeat;
+}
+
+.dj {
+  width: 20em;
+  height: 21em;
+  background: rgba(26, 26, 26, 0.548);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0.856) 100%, rgba(26, 26, 26, 0.541) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/1.jpg") no-repeat;
+}
+
+.dj:hover {
+  background: rgb(26, 26, 26);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0) 100%, rgba(26, 26, 26, 0.896796218487395) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/1.jpg") no-repeat;
+}
+
+.live:hover {
+  width: 20em;
+  height: 21em;
+  background: rgba(26, 26, 26, 0.548);
+  background: linear-gradient(221deg, rgba(26, 26, 26, 0) 100%, rgba(26, 26, 26, 0) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/2.jpg") no-repeat;
 }

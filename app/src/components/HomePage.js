@@ -9,35 +9,25 @@ function HomePage() {
         <div className="container">
           {/* <!-- Fm cities --> */}
           <div className="row text-white pb-5">
-            <div className=" pb-5">
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
+            <div className=" pb-5 text-center">
+              <div className="col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" />
                 berlin
               </div>
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                {" "}
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
-                Bucharest
+              <div className=" col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" /> Bucharest
               </div>
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                {" "}
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
-                London
+              <div className=" col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" /> London
               </div>
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                {" "}
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
-                Bucharest
+              <div className=" col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" /> Bucharest
               </div>
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                {" "}
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
-                Tel Aviv
+              <div className=" col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" /> Tel Aviv
               </div>
-              <div className="col-lg-6 col-xl d-none d-md-inline">
-                {" "}
-                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" alt="" />
-                Moscow
+              <div className=" col-xl d-none d-md-inline">
+                <img src="https://colorlib.com/preview/theme/eighty8/img/logo-small.png" className="" /> Moscow
               </div>
             </div>
           </div>
@@ -67,24 +57,29 @@ function HomePage() {
       <section>
         <div className="container">
           <div className="row text-center">
-            <div className="col-md-4">
-              <img id="ourdj" src="https://colorlib.com/preview/theme/eighty8/img/promo/1.jpg" className="img-responsive" alt="..." />
-              <div className="my-5 carousel-caption  text-danger">
-                <h1 className="my-5 ">Our DJ`s</h1>
-              </div>
+            <div className="col-8 col-md-4 offset-sm-2 offset-md-0">
+              <div className="dj mb-5 img-responsive">
+                {/* <img id="ourdj" src="https://colorlib.com/preview/theme/eighty8/img/promo/1.jpg" className="img-responsive" alt="..." /> */}
+                <div className="my-5 carousel-caption  ">
+                  <h1 className="my-5 offset-5 offset-sm-0 ">Our DJ`s</h1>
+                </div>
+              </div>{" "}
             </div>
-
-            <div className="col-md-4">
-              <img id="ourdj" src="https://colorlib.com/preview/theme/eighty8/img/promo/2.jpg" className="img-responsive" alt="..." />
-              <div className="my-5  carousel-caption text-danger">
-                <h1 className="my-5 ">Live Streams</h1>
+            <div className="col-8 col-md-4 offset-sm-2 offset-md-0">
+              <div className="live  mb-5 img-responsive">
+                {/* <img id="ourdj" src="https://colorlib.com/preview/theme/eighty8/img/promo/2.jpg" className="img-responsive" alt="..." /> */}
+                <div className="my-5  carousel-caption ">
+                  <h1 className="my-5 offset-5 offset-sm-0 ">Live Streams</h1>
+                </div>
               </div>
-            </div>
-            <div className="col-md-4">
-              <img id="ourdj" src="https://colorlib.com/preview/theme/eighty8/img/promo/3.jpg" className="img-responsive" alt="..." />
+            </div>{" "}
+            <div className="col-8 col-md-4 offset-sm-2 offset-md-0">
+              <div className="blur  mb-5 img-responsive">
+                {/* <img id="ourdj"  className="img-responsive" alt="..." /> */}
 
-              <div className="my-5  carousel-caption text-danger">
-                <h1 className="my-5 ">Events</h1>
+                <div className="my-5   carousel-caption ">
+                  <h1 className="my-5 offset-5 offset-sm-0">Events</h1>
+                </div>
               </div>
             </div>
           </div>

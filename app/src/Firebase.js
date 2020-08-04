@@ -18,6 +18,4 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const realDB = firebase.database();
-
-export default { firebaseConfig, realDB, firebase };
+export default firebase;
