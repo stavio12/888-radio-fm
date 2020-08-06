@@ -11,10 +11,10 @@ body {
 .w3-section {
   max-width: 500px;
 }
-#ourdj{
-  width:5em;
+#ourdj {
+  width: 5em;
 }
-.brand{
+.brand {
   width: 60px;
 }
 
@@ -79,4 +79,10 @@ body {
   height: 21em;
   background: rgba(26, 26, 26, 0.548);
   background: linear-gradient(221deg, rgba(26, 26, 26, 0) 100%, rgba(26, 26, 26, 0) 100%), url("https://colorlib.com/preview/theme/eighty8/img/promo/2.jpg") no-repeat;
+}
+
+@media (max-width: 1199px) {
+  .aboutImages {
+    width: 14em;
+  }
 }
