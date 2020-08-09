@@ -9,7 +9,6 @@ import About from "./components/About";
 import Booking from "./components/Booking";
 import ProductionPage from "./components/production/ProductionPage";
 import AdminPage from "./components/Admin/AdminPage.js";
-import AdminWorkspace from "./components/Admin/AdminWorkspace";
 
 //Using reducer to store up user UID after they login
 function reducer(state = "", action) {
@@ -39,6 +38,7 @@ function App() {
         <Route path="/admin" exact>
           <AdminPage user={state} />
         </Route>
+
         <Footer />
       </Router>
     </>

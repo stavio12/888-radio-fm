@@ -8,8 +8,11 @@ function Booking() {
   const [phone, setPhone] = useState();
   const [genre, setGenre] = useState();
   const [file, setFile] = useState("");
+  const [price, setPrice] = useState("");
   const [uploading, setUploading] = useState(false);
   //uploading file to FirebaseStorage
+
+  const db = firebase.firestore();
 
   function book(e) {
     e.preventDefault();
@@ -33,14 +36,19 @@ function Booking() {
 
     var storage = firebase.storage().ref("files/" + file.name);
     //get file url
-    storage.getDownloadURL().then(function (url) {
-      firebase.database().ref("Bookings/").push({
+    storage.getDownloadURL().then(async (url) => {
+      const docRef = db.collection("Production").doc("Guest");
+
+      //Uploading data intpo fireStore dbs
+      await docRef.collection("Details").add({
         url: url,
         Genre: genre,
         Name: name,
         Phone: phone,
         Email: email,
         File_Name: file.name,
+        Price: price,
+        Status: false,
       });
     });
     document.querySelector("form").reset();
@@ -78,12 +86,24 @@ function Booking() {
               </div>
             </div>
 
-            <div className="input-group ">
-              <div className="custom-file">
-                <input type="file" className="custom-file-input" id="file" placeholder={file.name} required onChange={(e) => setFile(e.target.files[0])} />
-                <label className="custom-file-label" htmlFor="validatedInputGroupCustomFile">
-                  {file.name ? file.name : "Choose file..."}
-                </label>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="custom-file mt-5">
+                  <input type="file" className="custom-file-input" id="validatedInputGroupCustomFile" accept=".jpg,.mp4,.mp3" required onChange={(e) => setFile(e.target.files[0])} />
+                  <label className="custom-file-label" htmlFor="validatedInputGroupCustomFile">
+                    {file.name ? file.name : "Choose file..."}
+                  </label>
+                </div>
+              </div>
+
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="inputState">Package</label>
+                <select id="inputState" className="form-control" defaultValue={"DEFAULT"} onChange={(e) => setPrice(e.target.value)}>
+                  <option value="DEFAULT">Choose...</option>
+                  <option>Personal</option>
+                  <option>Intermediate</option>
+                  <option>Expert</option>
+                </select>
               </div>
             </div>
 

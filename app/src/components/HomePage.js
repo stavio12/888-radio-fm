@@ -99,15 +99,6 @@ function HomePage() {
         <h1 className="text-center text-white pb-5">Charts</h1>
         <img src="https://colorlib.com/preview/theme/eighty8/img/logo-big.png" alt="" />
       </section>
-
-      <div className="list-inline text-center pt-5">
-        <a href="#home">
-          <i className="fa fa-arrow-up text-dark" aria-hidden="true">
-            <br />
-            <small> Move To Top</small>
-          </i>
-        </a>
-      </div>
     </>
   );
 }

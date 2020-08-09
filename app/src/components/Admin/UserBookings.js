@@ -1,49 +1,12 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../Firebase";
 
-function UserBookings({ data }) {
+function UserBookings() {
   const [downloadDetails, setDownloaddetails] = useState();
+  const [uploading, setUploading] = useState(false);
+  const [data, setData] = useState([]);
   const [file, setFile] = useState("");
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    data.map((key) => {
-      //looping for user UID from the database
-      const uid = [];
-      for (let key in data) {
-        uid.push({ key, ...data[key] });
-      }
-      uid.map((data) => {
-        //Looping for each key from user uid
-        const Uidkey = [];
-
-        for (let key in data) {
-          Uidkey.push({ key, ...data[key] });
-        }
-
-        //Getting data from firebase
-        Uidkey.map((userbooks) => {
-          const finalData = [];
-          for (let ID in userbooks) {
-            finalData.push(userbooks);
-          }
-          console.log(userbooks);
-
-          setBooks(finalData);
-
-          // firebase
-          //   .database()
-          //   .ref(`Production/${data.key}/${userbooks.key}`)
-          //   .once("value", (snapshot) => {
-          //     const data = snapshot.val();
-          //     if (data !== null) {
-          //       finalData.push(data);
-          //     }
-          //   });
-        });
-      });
-    });
-  }, []);
+  const db = firebase.firestore();
 
   function download(e) {
     setDownloaddetails("");
@@ -59,6 +22,8 @@ function UserBookings({ data }) {
         Genre: file.querySelector(".list-group-item .genre").textContent,
         File_Name: file.querySelector(".list-group-item .fileName").textContent,
         URL: file.querySelector(".list-group-item a").href,
+        ID: file.querySelector(".id").textContent,
+        UID: file.querySelector(".uid").textContent,
       };
 
       setDownloaddetails(userD);
@@ -82,14 +47,72 @@ function UserBookings({ data }) {
     }
   }
 
+  useEffect(() => {
+    //Getting booked data from database
+    const dataRef = db.collection(`Production/Bookings/Details`);
+    const data = [];
+
+    const fetchData = async () => {
+      const doc = await dataRef.get();
+      doc.forEach((docs) => {
+        data.push({
+          id: docs.id,
+          ...docs.data(),
+        });
+      });
+      setData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const upload = (e) => {
+    if (e.target.classList.contains("upload")) {
+      //Printing details which has been printed onto the page from the databse into state.
+      const fileD = e.target.parentElement;
+      const userid = {
+        ID: fileD.querySelector(".id").textContent,
+        UID: fileD.querySelector(".uid").textContent,
+      };
+
+      const sendBooking = firebase.storage().ref("Production/" + userid.UID);
+      const uploadFile = sendBooking.put(file);
+      uploadFile.on(
+        "state_changed",
+        (snapshot) => {
+          var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploading(true); // setting uploading button on when file start uploading
+          if (percentage == 100) {
+            setUploading(false); // setting uploading button off when file finishes uploading
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      var storage = firebase.storage().ref("Production/" + userid.UID);
+      //get file url and uploading all details into firebase realtime database
+      storage.getDownloadURL().then(async (url) => {
+        const docRef = db.collection("Production").doc("Bookings");
+        //Uploading data intpo fireStore dbs
+        await docRef.collection("Details").doc(userid.ID).update({
+          File_Name: file.name,
+          url: url,
+          Status: true,
+        });
+      });
+    }
+  };
+
   return (
     <>
       <div className="container my-3 my-sm-4 text-dark pb-5">
         <h1 className="mb-5 text-center text-white">Bookings</h1>
-        <div className="row">
-          {books.map((bookings, key) => (
-            <div className="col-12 col-md-4 mb-4">
-              <div key={key} className="card card-outline-danger text-center">
+        <div id="card" className="row">
+          {data.map((bookings, key) => (
+            <div key={bookings.id} className="col-12 col-md-4 mb-4">
+              <div className="card card-outline-danger text-center">
                 <div className={bookings.Status ? "card-header text-white bg-success" : "card-header text-white bg-danger"}>
                   <h2>{bookings.Price}</h2>
                 </div>
@@ -97,7 +120,10 @@ function UserBookings({ data }) {
                   {/* Toggling between Completed files and pending file */}
                   <p className={bookings.Status ? "card-text text-success" : "card-text text-danger"}>{bookings.Status ? "Completed" : "Pending"}</p>
                 </div>
-                <ul key={key} className="list-group small text-center">
+                <ul className="list-group small text-center">
+                  <h3 className="id d-none">{bookings.id}</h3>
+                  <h3 className="uid d-none">{bookings.uid}</h3>
+
                   <li className=" list-group-item">
                     {" "}
                     Name: <span className="name">{bookings.Name}</span>{" "}
@@ -126,13 +152,22 @@ function UserBookings({ data }) {
                     URL: <a href={bookings.url}>Download</a>
                   </li>
                   <li className="list-group-item">
-                    <input type="file" className="custom-file-input" id="validatedInputGroupCustomFile" required onChange={(e) => setFile(e.target.files[0])} />
+                    <input type="file" className="custom-file-input" id="validatedInputGroupCustomFile" accept=".jpg,.mp4,.mp3" required onChange={(e) => setFile(e.target.files[0])} />
                     <label className="custom-file-label" htmlFor="validatedInputGroupCustomFile">
                       {file.name ? file.name : "Choose file..."}
                     </label>
-                  </li>
 
-                  <button type="button" className="download btn btn-danger btn-lg" onClick={download}>
+                    <div className={uploading ? "text-center" : "d-none"}>
+                      <div className="spinner-border" role="status" /> <br />
+                      <span>Uploading Please wait.....</span>
+                    </div>
+                  </li>
+                  {/* Set hide Upload button after admin uploads to user */}
+                  <button type="button" className={bookings.Status ? "d-none" : "upload btn btn-secondary pt-3"} onClick={upload}>
+                    Upload File{" "}
+                  </button>
+
+                  <button type="button" className={bookings.Status ? "download btn btn-success btn-lg" : "download btn btn-danger btn-lg"} onClick={download}>
                     Download Invoice
                   </button>
                 </ul>

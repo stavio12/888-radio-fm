@@ -7,45 +7,30 @@ import UserBookings from "./UserBookings";
 function AdminWorkspace() {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
-  // const [key, setKey] = useState("Bookings/");
   const [toggle, setToggle] = useState(false);
-  const [ID, setID] = useState(null);
+
+  const db = firebase.firestore();
 
   useEffect(() => {
     //Getting booked data from database
-    firebase
-      .database()
-      .ref("Bookings/")
-      .once("value", (snapshot) => {
-        const data = snapshot.val();
-        const prodData = userData(data);
+    const dataRef = db.collection(`Production/Guest/Details`);
+    const data = [];
+
+    const fetchData = async () => {
+      const doc = await dataRef.get();
+      doc.forEach((docs) => {
+        data.push({
+          id: docs.id,
+          ...docs.data(),
+        });
       });
-  });
+      setData(data);
+      setloading(false);
+    };
 
-  const userData = (firebaseData) => {
-    //Setting data into an array
-    const userDetails = [];
+    fetchData();
+  }, []);
 
-    for (let key in firebaseData) {
-      userDetails.push({ key, ...firebaseData[key] });
-    }
-
-    setData(userDetails);
-    setloading(false);
-
-    return userDetails;
-  };
-
-  function guest() {
-    setToggle(false);
-  }
-
-  function users() {
-    // setKey("Production/");
-    setToggle(true);
-  }
-
-  var ClearTime;
   if (loading) return <Loading />;
 
   return (
@@ -53,18 +38,18 @@ function AdminWorkspace() {
       <div className="container text-white text-center form-row">
         <div className="col">
           <h3>Guest</h3>
-          <button className="btn btn-lg btn-info" onClick={guest}>
+          <button className="btn btn-lg btn-info" onClick={(e) => setToggle(false)}>
             Bookings
           </button>
         </div>
         <div className="col">
           <h3>Production</h3>
-          <button className="btn btn-lg btn-info" onClick={users}>
+          <button className="btn btn-lg btn-info" onClick={(e) => setToggle(true)}>
             Bookings
           </button>
         </div>
       </div>
-      {toggle ? <UserBookings data={data} /> : <Bookingcards data={data} />}
+      {toggle ? <UserBookings /> : <Bookingcards data={data} />}
     </>
   );
 }

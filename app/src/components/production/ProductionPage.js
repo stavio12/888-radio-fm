@@ -12,9 +12,7 @@ function ProductionPage({ user }) {
   const [price, setPrice] = useState("");
   const [uploading, setUploading] = useState(false);
 
-
-
-
+  const db = firebase.firestore();
 
   function book(e) {
     e.preventDefault();
@@ -39,20 +37,35 @@ function ProductionPage({ user }) {
 
     var storage = firebase.storage().ref("Production/" + user);
     //get file url and uploading all details into firebase realtime database
-    storage.getDownloadURL().then(function (url) {
-      firebase
-        .database()
-        .ref("Production/" + `${user}`)
-        .push({
-          url: url,
-          Genre: genre,
-          Name: name,
-          Phone: phone,
-          Email: email,
-          File_Name: file.name,
-          Price: price,
-          Status: false,
-        });
+    storage.getDownloadURL().then(async (url) => {
+      const docRef = db.collection("Production").doc("Bookings");
+
+      //Uploading data intpo fireStore dbs
+      await docRef.collection("Details").add({
+        url: url,
+        Genre: genre,
+        Name: name,
+        Phone: phone,
+        Email: email,
+        File_Name: file.name,
+        Price: price,
+        Status: false,
+        uid: user,
+      });
+
+      // firebase
+      //   .database()
+      //   .ref("Production/" + `${user}`)
+      //   .push({
+      //     url: url,
+      //     Genre: genre,
+      //     Name: name,
+      //     Phone: phone,
+      //     Email: email,
+      //     File_Name: file.name,
+      //     Price: price,
+      //     Status: false,
+      //   });
     });
 
     document.querySelector("form").reset();
@@ -94,7 +107,7 @@ function ProductionPage({ user }) {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <div className="custom-file mt-5">
-                  <input type="file" className="custom-file-input" id="validatedInputGroupCustomFile" required onChange={(e) => setFile(e.target.files[0])} />
+                  <input type="file" className="custom-file-input" id="validatedInputGroupCustomFile" accept=".jpg,.mp4,.mp3" required onChange={(e) => setFile(e.target.files[0])} />
                   <label className="custom-file-label" htmlFor="validatedInputGroupCustomFile">
                     {file.name ? file.name : "Choose file..."}
                   </label>
