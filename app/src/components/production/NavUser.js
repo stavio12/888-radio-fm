@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
+import firebaseConfig from "../../Firebase";
 
 function NavUser({ user }) {
   return (

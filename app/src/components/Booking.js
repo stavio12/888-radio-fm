@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
-import { firebaseConfig } from "../Firebase";
+import firebaseConfig from "../Firebase";
 
 function Booking() {
   const [name, setName] = useState();

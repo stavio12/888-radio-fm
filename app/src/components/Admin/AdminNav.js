@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
-import firebase from "../../Firebase";
+import { Link } from "react-router-dom";
+import firebase from "Firebase";
+import firebaseConfig from "../../Firebase";
 
 function AdminNav() {
-
-
   return (
     <>
-       <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
         <Link to="/" className="navbar-brand">
           Navbar
         </Link>
@@ -33,7 +32,6 @@ function AdminNav() {
                 Booking
               </Link>
             </li>
-        
           </ul>
           {/* {user.photoUrl} {user.displayName} */}
           <ul className="navbar-nav">
@@ -53,7 +51,8 @@ function AdminNav() {
             </button>
           </ul>
         </div>
-      </nav>  </>
+      </nav>{" "}
+    </>
   );
 }
 

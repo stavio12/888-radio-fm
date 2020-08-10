@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
+import firebaseConfig from "../../Firebase";
 import UserData from "./Userdata";
-import Axios from "axios";
 
 function ProductionPage({ user }) {
   const [name, setName] = useState();
