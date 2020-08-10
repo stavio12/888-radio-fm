@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import firebase from "Firebase/app";
-import firebaseConfig from "../../Firebase";
+import firebase from "../../Firebase";
 
 function UserBookings() {
   const [downloadDetails, setDownloaddetails] = useState();
