@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../Firebase";
+import firebase from "firebase";
+import firebaseConfig from "../../Firebase";
 import Loading from "../production/Loading";
 import Bookingcards from "./Bookingcards";
 import UserBookings from "./UserBookings";
@@ -8,6 +9,8 @@ function AdminWorkspace() {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
   const [toggle, setToggle] = useState(false);
+
+  const db = firebase.firestore();
 
   useEffect(() => {
     //Getting booked data from database

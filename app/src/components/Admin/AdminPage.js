@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { db, store, firebase } from "../../Firebase";
+import firebase from "firebase";
+import firebaseConfig from "../../Firebase";
 
 import AdminNav from "./AdminNav";
 import AdminWorkspace from "./AdminWorkspace";

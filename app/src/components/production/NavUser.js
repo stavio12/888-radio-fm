@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
+import firebaseConfig from "./../../Firebase";
 
 function NavUser({ user }) {
   return (
@@ -49,9 +50,10 @@ function NavUser({ user }) {
               className="btn btn-warning ml-5 text-md-center offset-5 offset-lg-0 font-weight-bolder"
               onClick={() => {
                 firebase.auth().signOut();
+                window.location.href = "/";
               }}
             >
-              <Link to="/">SignOut</Link>
+              SignOut
             </button>
           </ul>
         </div>

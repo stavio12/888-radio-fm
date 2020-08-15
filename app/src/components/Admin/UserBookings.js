@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { db, store, auth } from "../../Firebase";
+import firebase from "firebase";
+import firebaseConfig from "../../Firebase";
 
 function UserBookings() {
   const [downloadDetails, setDownloaddetails] = useState();
   const [uploading, setUploading] = useState(false);
   const [data, setData] = useState([]);
   const [file, setFile] = useState("");
+  const db = firebase.firestore();
 
   function download(e) {
     setDownloaddetails("");
@@ -74,7 +76,7 @@ function UserBookings() {
         UID: fileD.querySelector(".uid").textContent,
       };
 
-      const sendBooking = store.ref("Production/" + userid.UID);
+      const sendBooking = firebase.storage().ref("Production/" + userid.UID);
       const uploadFile = sendBooking.put(file);
       uploadFile.on(
         "state_changed",
@@ -90,7 +92,7 @@ function UserBookings() {
         }
       );
 
-      var storage = store.ref("Production/" + userid.UID);
+      var storage = firebase.storage().ref("Production/" + userid.UID);
       //get file url and uploading all details into firebase realtime database
       storage.getDownloadURL().then(async (url) => {
         const docRef = db.collection("Production").doc("Bookings");
