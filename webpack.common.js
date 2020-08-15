@@ -1,5 +1,4 @@
 const path = require("path");
-// const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -8,14 +7,6 @@ module.exports = {
     publicPath: "/",
     path: path.resolve(__dirname, "build"),
     filename: "bundled.js",
-  },
-  mode: "development",
-  devtool: "source-map",
-  devServer: {
-    port: 3000,
-    contentBase: "./build",
-    hot: true,
-    historyApiFallback: { index: "index.html" },
   },
   module: {
     rules: [
@@ -39,8 +30,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve("./app/index.html"),
     }),
-    // new Dotenv({
-    //   path: path.resolve(__dirname, "./.env"),
-    // }),
   ],
 };

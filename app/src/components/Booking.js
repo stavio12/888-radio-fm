@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
-import firebaseConfig from "../Firebase";
+import { firebase } from "../Firebase";
 
 function Booking() {
   const [name, setName] = useState();
@@ -24,7 +23,6 @@ function Booking() {
       (snapshot) => {
         var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setUploading(true);
-        console.log(percentage);
         if (percentage == 100) {
           setUploading(false);
         }

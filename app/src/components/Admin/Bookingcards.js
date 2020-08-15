@@ -45,14 +45,14 @@ function Bookingcards({ data }) {
       <div className="container my-3 my-sm-4 text-dark pb-5">
         <h1 className="mb-5 text-center text-white">Bookings</h1>
         <div className="row">
-          {data.map((bookings, key) => (
-            <div className="col-12 col-md-4 mb-4">
-              <div key={key} className="card card-outline-danger text-center guestbooks">
+          {data.map((bookings) => (
+            <div key={bookings.id} className="col-12 col-md-4 mb-4">
+              <div className="card card-outline-danger text-center guestbooks">
                 <div className="card-header text-white bg-danger">
                   <h4>{bookings.Price}</h4>
                 </div>
 
-                <ul key={key} className="list-group small text-center">
+                <ul className="list-group small text-center">
                   <li className=" list-group-item">
                     {" "}
                     Name: <span className="name">{bookings.Name}</span>{" "}

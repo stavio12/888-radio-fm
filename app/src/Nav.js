@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProductionPage from "./components/production/ProductionPage";
-import firebase from "firebase";
+import { firebase } from "./Firebase";
 import NavUser from "../src/components/production/NavUser";
-import { firebaseConfig } from "./Firebase";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 function useAuth() {

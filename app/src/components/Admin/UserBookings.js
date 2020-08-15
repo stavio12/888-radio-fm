@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../../Firebase";
+import { db, store, auth } from "../../Firebase";
 
 function UserBookings() {
   const [downloadDetails, setDownloaddetails] = useState();
   const [uploading, setUploading] = useState(false);
   const [data, setData] = useState([]);
   const [file, setFile] = useState("");
-  const db = firebase.firestore();
 
   function download(e) {
     setDownloaddetails("");
@@ -75,7 +74,7 @@ function UserBookings() {
         UID: fileD.querySelector(".uid").textContent,
       };
 
-      const sendBooking = firebase.storage().ref("Production/" + userid.UID);
+      const sendBooking = store.ref("Production/" + userid.UID);
       const uploadFile = sendBooking.put(file);
       uploadFile.on(
         "state_changed",
@@ -91,7 +90,7 @@ function UserBookings() {
         }
       );
 
-      var storage = firebase.storage().ref("Production/" + userid.UID);
+      var storage = store.ref("Production/" + userid.UID);
       //get file url and uploading all details into firebase realtime database
       storage.getDownloadURL().then(async (url) => {
         const docRef = db.collection("Production").doc("Bookings");
@@ -110,7 +109,7 @@ function UserBookings() {
       <div className="container my-3 my-sm-4 text-dark pb-5">
         <h1 className="mb-5 text-center text-white">Bookings</h1>
         <div id="card" className="row">
-          {data.map((bookings, key) => (
+          {data.map((bookings) => (
             <div key={bookings.id} className="col-12 col-md-4 mb-4">
               <div className="card card-outline-danger text-center">
                 <div className={bookings.Status ? "card-header text-white bg-success" : "card-header text-white bg-danger"}>
