@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import firebase from "firebase";
-import firebaseConfig from "../../Firebase";
+// import firebase from "firebase";
+import firebase from "../../Firebase";
 
 function AdminNav() {
   return (

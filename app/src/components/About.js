@@ -6,7 +6,7 @@ function About() {
       <h2 className="text-white text-center font-weight-bolder pb-5 pt-5">Product And Services</h2>
 
       <div className="embed-responsive embed-responsive-16by9  pb-5">
-        <iframe className="embed-responsive-item" width="789" height="444" src="https://www.youtube.com/embed/Dp5juGm2LGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe className="embed-responsive-item" width="789" height="444" src="https://www.youtube.com/embed/Dp5juGm2LGE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
 
       <section className="pt-5 text-white">

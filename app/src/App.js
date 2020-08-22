@@ -30,12 +30,12 @@ function App() {
       <Router>
         <Nav dispatch={dispatch} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/about" component={About} />
-        <Route path="/booking" component={Booking} />
-        <Route path="/production" exact>
+        <Route path="/about" exact component={About} />
+        <Route path="/booking" exact component={Booking} />
+        <Route path="/production">
           <ProductionPage user={state} />
         </Route>
-        <Route path="/admin" exact>
+        <Route path="/admin">
           <AdminPage user={state} />
         </Route>
 

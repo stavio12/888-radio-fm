@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
-import firebaseConfig from "./../../Firebase";
+// import firebase from "firebase";
+import firebase from "./../../Firebase";
 import UserData from "./Userdata";
 import Axios from "axios";
 
@@ -53,20 +53,6 @@ function ProductionPage({ user }) {
         Status: false,
         uid: user,
       });
-
-      // firebase
-      //   .database()
-      //   .ref("Production/" + `${user}`)
-      //   .push({
-      //     url: url,
-      //     Genre: genre,
-      //     Name: name,
-      //     Phone: phone,
-      //     Email: email,
-      //     File_Name: file.name,
-      //     Price: price,
-      //     Status: false,
-      //   });
     });
 
     document.querySelector("form").reset();

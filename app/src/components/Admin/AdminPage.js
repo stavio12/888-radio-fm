@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
-import firebaseConfig from "../../Firebase";
+// import firebase from "firebase";
+import firebase from "../../Firebase";
 
 import AdminNav from "./AdminNav";
 import AdminWorkspace from "./AdminWorkspace";
@@ -13,11 +13,12 @@ function useAuth() {
     return firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         //verifying if UID is same as the Admin
-        if (process.env.REACT_APP_USER_ID === firebaseUser.uid) {
+        if ("753KpDrZoFYadK50hvFhwxzxB4J2" === firebaseUser.uid) {
           setUser(firebaseUser.uid);
         } else {
           setUser(null);
           alert("This Page is for Admins only!");
+          window.location.href = "/";
         }
       } else {
         setUser(null);
