@@ -5,3 +5,10 @@ bootstrap.min.css
 jquery-3.4.1.min.js
 build
 ./.env
+.firebase/hosting.YnVpbGQ.cache
+.firebaserc
+database.rules.json
+*.json
+*.rules
+
+functions/index.js
